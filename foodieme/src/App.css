@@ -1,0 +1,92 @@
+.section-contanier{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+  padding: 20px;
+}
+.foodie-me{
+  font-family: 'Dancing Script', cursive;
+   color: #fd746c
+}
+
+.input-category{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.input-category>input{
+  margin-right: 17px;
+  padding: 20px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #fd746c;
+}
+.button-style{
+  border-radius: 20px;
+  background-color: #fd746c;
+  text-align: center;
+  color: white;
+  border: none;
+  outline: none;
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+
+}
+/* Menu list */
+.nutrient-fact{
+margin-top: 50px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+
+}
+.nutrient-fact>li{
+  margin: 30px;
+  font-size: 20px;
+}
+.design{
+  width: 340px;
+  margin: 20px;
+}
+.design >img{
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.meal-source{
+  width: auto;
+  padding: 10px;
+  height: 40px;
+  background-color: #fd746c;
+  border: none;
+  outline: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.meal-source a{
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+/* end of menulist */
+
+@media screen and (max-width:480px){
+  .input-category{
+    flex-direction: column;
+  }
+  .input-category>input{
+    margin-bottom: 20px;
+  }
+  .nutrient-fact{
+    flex-direction: column;
+  }
+  .nutrient-fact>li{
+  margin: 20px;
+  text-align: center;
+  }
+}
