@@ -2,37 +2,35 @@ import React, { useState } from "react";
 import "./App.css";
 import { IoBody } from "react-icons/io5";
 import MenuList from "./MenuList";
+import Loader from "./Loader";
 
 const App = () => {
   const [mealData, setMealData] = useState("");
   const [calorie, setCalorie] = useState("");
   const [diet, setDiet] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const Calorie = (e) => {
     setCalorie(e.target.value);
   };
+  
   const dietPlan = (e) => {
     setDiet(e.target.value);
   };
+
   const getMeal = () => {
-    fetch(
-      `https://api.spoonacular.com/mealplanner/generate?apiKey=a5ded80956ef4b0cb92a96f7917b0fea&timeFrame=day&targetCalories=${calorie}&diet=${diet}`
-    )
-      .then((response) => {
-        console.log(response)
-        if (!response.ok) {
-          throw Error(
-            "OOPS WE HAVE EXHAUSTED OUR DAILY REQUEST LIMIT,TRY AGAIN TOMMORROW..."
-          );
-        }
-        return response.json();
-      })
+    setLoading(true)
+    fetch(`https://api.spoonacular.com/mealplanner/generate?apiKey=a5ded80956ef4b0cb92a96f7917b0fea&timeFrame=day&targetCalories=${calorie}&diet=${diet}`)
+      .then((response) => response.json())
       .then((meals) => {
+        setLoading(false)
         setMealData(meals);
       })
       .catch((err) => {
-        setError(err.message);
+        console.log(err);
+        setLoading(false)
+        setError("OOPS WE HAVE EXHAUSTED OUR DAILY REQUEST LIMIT,TRY AGAIN TOMMORROW...")
       });
   };
 
@@ -59,6 +57,7 @@ const App = () => {
         Get Plan
       </button>
       {mealData && <MenuList mealData={mealData} />}
+      {loading && <Loader/>}
       {/* displays the error message */}
       {error && (
         <div
